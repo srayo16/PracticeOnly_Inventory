@@ -4,18 +4,19 @@ const bcrypt = require("bcrypt");
 const adminSchema = new mongoose.Schema({
     name: {
         type: String,
-        unique: [true, "Name must be unique than others."],
-        required: true
+        // unique: [true, "Name must be unique than others."],
+        required: [true, "Name Required"]
     },
 
     email: {
-        type: String
+        type: String,
+        required: [true, "Email Required"]
     },
 
     password: {
         type: String,
         minLength: [8, "Must be 8 letters!"],
-        required: true
+        required: [true, "Password Required"]
     },
 
 },
@@ -42,5 +43,5 @@ adminSchema.pre("save", async (next) => {
     this.password = await bcrypt.hash(this.password, salt);
 });
 
-const model = mongoose.model("adminModel", adminSchema);
-model.exports = model;
+const model = mongoose.model("AdminModel", adminSchema);
+module.exports = model;

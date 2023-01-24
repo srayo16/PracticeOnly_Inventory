@@ -11,14 +11,18 @@ global.__basedir = "public/"; // set base directory
 app.use(cors());
 app.use(express.json());
 
+mongoose.set('strictQuery', false);
+
 mongoose.connect(process.env.DATABASE_LOCAL).then(() => {
     console.log("Database connected!".brightMagenta.bold);
-});
+}).catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
     res.status(200).send("Alhamdulillah, Running Server");
 })
 
+// Main Routes
+app.use("/api/v1/admin/", require("./Routes/AdminRoutes"));
 
 
 
