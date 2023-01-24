@@ -18,6 +18,9 @@ const adminSchema = new mongoose.Schema({
         minLength: [8, "Must be 8 letters!"],
         required: [true, "Password Required"]
     },
+    image: {
+        type: String
+    },
 
 },
     {

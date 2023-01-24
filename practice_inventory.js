@@ -7,6 +7,7 @@ require("colors");
 const port = process.env.PORT || 8080;
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 global.__basedir = "public/"; // set base directory
 app.use(cors());
 app.use(express.json());

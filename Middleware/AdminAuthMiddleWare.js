@@ -12,7 +12,9 @@ const authMiddleware = async (req, res, next) => {
             const decoded = jwt.verify(token, process.env.JWT_SECRET); //verify token
 
             //check if user still exists
-            req.admin = await Admin.findById(decoded.id);
+            const id = decoded._id || decoded.id;
+            // console.log(id);
+            req.user = await Admin.findById(id);
             next();
         }
         catch (err) {
