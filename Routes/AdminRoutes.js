@@ -3,7 +3,7 @@ const { addAdmin, getAllAdminData, getAdminById, getCurrentAdmin, deleteAllAdmin
 const auth = require("../Middleware/AdminAuthMiddleWare");
 const upload = require("../Middleware/ImageUploadMiddleWare");
 
-router.post("/add", addAdmin);
+router.post("/add", upload.single("image"), addAdmin);
 router.get("/all", getAllAdminData);
 router.get("/:id", getAdminById);
 router.get("/", auth, getCurrentAdmin);
